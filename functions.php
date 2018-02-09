@@ -118,6 +118,8 @@ add_action( 'widgets_init', 'gorki_widgets_init' );
  */
 function gorki_scripts() {
 	wp_enqueue_style( 'gorki-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'gorki-bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.css', array('gorki-style'), '1', 'all');
+	wp_enqueue_script( 'gorki-bootstrap', get_template_directory_uri() . '/bootstrap/js/bootstrap.js', array(), '1', 'all');
 
 	wp_enqueue_script( 'gorki-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
