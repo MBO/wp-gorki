@@ -1,3 +1,4 @@
+<!-- content-page.php -->
 <?php
 /**
  * Template part for displaying page content in page.php
@@ -11,12 +12,13 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		<?php gorki_post_thumbnail(); ?>
+		<div class="container">
+			<?php the_title( '<h1 class="entry-title display-1">', '</h1>' ); ?>
+		</div>
 	</header><!-- .entry-header -->
 
-	<?php gorki_post_thumbnail(); ?>
-
-	<div class="entry-content">
+	<div class="entry-content container">
 		<?php
 			the_content();
 
@@ -28,7 +30,7 @@
 	</div><!-- .entry-content -->
 
 	<?php if ( get_edit_post_link() ) : ?>
-		<footer class="entry-footer">
+		<footer class="entry-footer container">
 			<?php
 				edit_post_link(
 					sprintf(
@@ -50,3 +52,5 @@
 		</footer><!-- .entry-footer -->
 	<?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->
+
+<!-- /content-page.php -->

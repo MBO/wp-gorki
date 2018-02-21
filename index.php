@@ -13,8 +13,8 @@
  */
 
 get_header(); ?>
-
-	<div id="primary" class="content-area">
+	<!-- index.php -->
+	<section id="primary" class="content-area container">
 		<main id="main" class="site-main">
 
 		<?php
@@ -49,7 +49,7 @@ get_header(); ?>
 		endif; ?>
 
 		</main><!-- #main -->
-	</div><!-- #primary -->
+	</section><!-- #primary -->
 
 <?php
 get_sidebar();
