@@ -6,12 +6,25 @@
  *
  * @package Gorki
  */
-
-if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-	return;
-}
 ?>
 
-<aside id="secondary" class="widget-area">
-	<?php dynamic_sidebar( 'sidebar-1' ); ?>
+<aside id="secondary" class="widget-area col-12 col-md-4 order-1">
+	<?php
+		wp_nav_menu( array(
+			'menu'            => 'aside',
+			'theme_location'  => 'menu-aside',
+			'container'       => 'div',
+			'container_id'    => 'aside-menu',
+			// 'container_class' => 'collapse navbar-collapse',
+			'menu_id'         => false,
+			'menu_class'      => 'navbar-nav nav-column nav-pills',
+			'depth'           => 1,
+			'fallback_cb'     => 'bs4navwalker::fallback',
+			'walker'          => new bs4navwalker()
+		) );
+		
+		if (is_active_sidebar(' sidebar-1 ')) {
+			dynamic_sidebar( 'sidebar-1' );
+		}
+	?>
 </aside><!-- #secondary -->

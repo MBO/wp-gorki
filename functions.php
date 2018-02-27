@@ -92,7 +92,7 @@ add_action( 'after_setup_theme', 'gorki_setup' );
  * @global int $content_width
  */
 function gorki_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'gorki_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'gorki_content_width', 1170 );
 }
 add_action( 'after_setup_theme', 'gorki_content_width', 0 );
 
@@ -101,35 +101,82 @@ add_action( 'after_setup_theme', 'gorki_content_width', 0 );
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-// function gorki_widgets_init() {
-// 	register_sidebar( array(
-// 		'name'          => esc_html__( 'Sidebar', 'gorki' ),
-// 		'id'            => 'sidebar-1',
-// 		'description'   => esc_html__( 'Add widgets here.', 'gorki' ),
-// 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-// 		'after_widget'  => '</section>',
-// 		'before_title'  => '<h2 class="widget-title">',
-// 		'after_title'   => '</h2>',
-// 	) );
-// }
-// add_action( 'widgets_init', 'gorki_widgets_init' );
+function gorki_widgets_init() {
+	register_sidebar( array(
+		'name'          => esc_html__( 'Sidebar', 'gorki' ),
+		'id'            => 'sidebar-1',
+		'description'   => esc_html__( 'Add widgets here.', 'gorki' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer 1', 'wp-bootstrap-starter' ),
+		'id'            => 'footer-1',
+		'description'   => esc_html__( 'Add widgets here.', 'wp-bootstrap-starter' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s card">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<div class="card-header"><h3 class="widget-title card-title">',
+		'after_title'   => '</h3></div>',
+	) );
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer 2', 'wp-bootstrap-starter' ),
+		'id'            => 'footer-2',
+		'description'   => esc_html__( 'Add widgets here.', 'wp-bootstrap-starter' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer 3', 'wp-bootstrap-starter' ),
+		'id'            => 'footer-3',
+		'description'   => esc_html__( 'Add widgets here.', 'wp-bootstrap-starter' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+}
+add_action( 'widgets_init', 'gorki_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
 function gorki_scripts() {
-	wp_enqueue_style( 'gorki-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'gorki-bootstrap-css', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' );
+	wp_enqueue_style( 'gorki-fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
+	wp_enqueue_style( 'gorki-style', get_stylesheet_uri());
 	
-	// wp_enqueue_style( 'gorki-bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.css', array('gorki-style'), '1', 'all');
 	// wp_enqueue_script( 'gorki-bootstrap', get_template_directory_uri() . '/bootstrap/js/bootstrap.js', array(), '1', 'all');
 
+	wp_enqueue_script( 'jquery' );
+	
 	wp_enqueue_script( 'gorki-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
 	wp_enqueue_script( 'gorki-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'gorki-popper', '//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' );
+	wp_enqueue_script( 'gorki-bootstrap-js', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+
+
+	// if(get_theme_mod( 'theme_option_setting' ) && get_theme_mod( 'theme_option_setting' ) !== 'default') {
+	// 	wp_enqueue_style( 'wp-bootstrap-starter-'.get_theme_mod( 'theme_option_setting' ), get_template_directory_uri() . '/inc/assets/css/presets/theme-option/'.get_theme_mod( 'theme_option_setting' ).'.css', false, '' );
+	// }
+	// if(get_theme_mod( 'preset_style_setting' ) === 'poppins-lora') {
+	// 	wp_enqueue_style( 'wp-bootstrap-starter-poppins-lora-font', '//fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Poppins:300,400,500,600,700' );
+	// }
+	// [...]
+	// Color Scheme
+	/*if(get_theme_mod( 'preset_color_scheme_setting' ) && get_theme_mod( 'preset_color_scheme_setting' ) !== 'default') {
+			wp_enqueue_style( 'wp-bootstrap-starter-'.get_theme_mod( 'preset_color_scheme_setting' ), get_template_directory_uri() . '/inc/assets/css/presets/color-scheme/'.get_theme_mod( 'preset_color_scheme_setting' ).'.css', false, '' );
+	}else {
+			wp_enqueue_style( 'wp-bootstrap-starter-default', get_template_directory_uri() . '/inc/assets/css/presets/color-scheme/blue.css', false, '' );
+	}*/
 }
 add_action( 'wp_enqueue_scripts', 'gorki_scripts' );
 
@@ -160,3 +207,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Require custom navwalker for bootstrap 4 navigation menus
+ */
+require get_template_directory() . '/inc/bs4navwalker.php';

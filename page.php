@@ -14,8 +14,11 @@
 
 get_header(); ?>
 	<!-- page.php -->
-	<div id="primary" class="content-area">
+	<?php /*
+	<div id="content" class="site-content col-12 <?php is_active_sidebar( 'sidebar-1' ) ? 'col-md-8 order-3' : '' ?>">
+	<div id="primary" class="content-area col-12 col-md-6 order-2">
 		<main id="main" class="site-main">
+		*/ ?>
 
 			<?php
 			while ( have_posts() ) : the_post();
@@ -25,9 +28,9 @@ get_header(); ?>
 			endwhile; // End of the loop.
 			?>
 
+<?php /*
 		</main><!-- #main -->
 	</div><!-- #primary -->
-
+	</div><!-- #content --> */ ?>
 <?php
-get_sidebar();
 get_footer();

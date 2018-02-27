@@ -15,6 +15,7 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -22,60 +23,38 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'gorki' ); ?></a>
+<div id="page" class="site bg-light">
+	<a class="skip-link sr-only sr-only-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'gorki' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<nav class="navbar navbar-light bg-light">
+	<header id="masthead" class="site-header navbar-static-top" role="banner">
+		<nav class="navbar x-fixed-top navbar-expand-md navbar-dark bg-dark p-4"> <!-- TODO fixed-top -->
 			<div class="container">
-			  <?php if ( is_front_page() && is_home() ) : ?>
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="navbar-brand"><?php bloginfo( 'name' ); ?></a>
-				<?php else : ?>
-				<p class="navbar-brand"><?php bloginfo( 'name' ); ?></p>
-				<?php endif; ?>
-				<button clas="navbar-toggler" type="button" data-toggle="collapse" data-target="#primary-menu" aria-expanded="false" aria-label="Toggle navigation">
+				<div class="navbar-brand">
+					<strong><a class="site-title" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></strong>
+				</div>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primary-menu" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+
 				<?php
 				wp_nav_menu( array(
-					'theme_location' => 'menu-top',
-					// 'menu_id'        => 'primary-menu',
-					'container_id' => 'primary-menu',
-					'container_class' => array( 'collapse', 'navbar-collapse' ),
-					'menu_class' => 'navbar-nav',
-					'item_class' => array( 'nav-item' )
-
+					'menu'            => 'top',
+					'theme_location'  => 'menu-top',
+					'container'       => 'div',
+					'container_id'    => 'primary-menu',
+					'container_class' => 'collapse navbar-collapse',
+					'menu_id'         => false,
+					'menu_class'      => 'navbar-nav ml-auto',
+					'depth'           => 1,
+					'fallback_cb'     => 'bs4navwalker::fallback',
+					'walker'          => new bs4navwalker()
 				) );
 				?>
 			</div>
 		</nav>
 
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-			endif;
-
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-			<?php
-			endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'gorki' ); ?></button>
-			<?php
-				wp_nav_menu( array(
-					'theme_location' => 'menu-top',
-					'menu_id'        => 'primary-menu',
-				) );
-			?>
-		</nav><!-- #site-navigation -->
+		<img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
 	</header><!-- #masthead -->
 
-	<div id="content" class="site-content">
+	<!-- <div id="content" class="site-content col-12 <?php is_active_sidebar( 'sidebar-1' ) ? 'col-md-8 order-3' : '' ?>"> -->

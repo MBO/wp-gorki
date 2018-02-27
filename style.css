@@ -17,18 +17,4 @@ Gorki is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic,
 Underscores is distributed under the terms of the GNU GPL v2 or later.
 */
 
-.site-footer {
-	/* background-color: #000; */
-	/* color: #fff; */
-	/* background-color: #EEE2D6; */
-	/* background-color: #C2B4A9; */
-	color: maroon;
-	/* color: #871701; */
-	/* color: #031926; */
-}
 
-.site-footer .container {
-	padding-top: 2em;
-	padding-bottom: 2em;
-	border-top: 1px solid gold;
-}
