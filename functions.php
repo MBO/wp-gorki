@@ -115,28 +115,28 @@ function gorki_widgets_init() {
 		'name'          => esc_html__( 'Footer 1', 'wp-bootstrap-starter' ),
 		'id'            => 'footer-1',
 		'description'   => esc_html__( 'Add widgets here.', 'wp-bootstrap-starter' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s card">',
+		'before_widget' => '<section id="%1$s" class="widget text-muted small p-3 %2$s">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<div class="card-header"><h3 class="widget-title card-title">',
-		'after_title'   => '</h3></div>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4><hr>',
 	) );
 	register_sidebar( array(
 		'name'          => esc_html__( 'Footer 2', 'wp-bootstrap-starter' ),
 		'id'            => 'footer-2',
 		'description'   => esc_html__( 'Add widgets here.', 'wp-bootstrap-starter' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'before_widget' => '<section id="%1$s" class="widget text-muted small p-3 %2$s">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4><hr>',
 	) );
 	register_sidebar( array(
 		'name'          => esc_html__( 'Footer 3', 'wp-bootstrap-starter' ),
 		'id'            => 'footer-3',
 		'description'   => esc_html__( 'Add widgets here.', 'wp-bootstrap-starter' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'before_widget' => '<section id="%1$s" class="widget text-muted small p-3 %2$s">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4><hr>',
 	) );
 }
 add_action( 'widgets_init', 'gorki_widgets_init' );
