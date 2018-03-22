@@ -21,7 +21,7 @@ $menu = wp_nav_menu( array(
 ) );
 ?>
 
-<div class="d-flex d-lg-none col-12 order-1">
+<div class="d-flex d-lg-none col-12 order-1 d-print-none">
   <div class="card">
 	  <div class="card-body">
 			<nav class="navbar navbar-dark">

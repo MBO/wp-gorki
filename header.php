@@ -26,8 +26,8 @@
 <div id="page" class="site bg-light">
 	<a class="skip-link sr-only sr-only-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'gorki' ); ?></a>
 
-	<header id="masthead" class="site-header navbar-static-top" role="banner">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3 box-shadow"> <!-- TODO fixed-top -->
+	<header id="masthead" class="site-header navbar-static-top d-print-none" role="banner">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3 box-shadow">
 			<div class="container">
 				<a class="site-title navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><strong><?php bloginfo( 'name' ); ?></strong></a>
 

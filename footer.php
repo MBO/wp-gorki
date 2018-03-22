@@ -12,7 +12,7 @@
 ?>
 
 	<!-- </div><!- - #content -->
-	<footer id="colophon" class="site-footer col-12 order-4">
+	<footer id="colophon" class="site-footer col-12 order-4 d-print-none">
 		<?php get_template_part( 'footer-widget' ); ?>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
