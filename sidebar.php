@@ -49,7 +49,7 @@ $menu = wp_nav_menu( array(
 	</div>
 </div>
 
-<aside id="secondary" class="widget-area col-lg-3 order-1 mt-0 mb-0 d-none d-lg-flex">
+<aside id="secondary" class="widget-area col-lg-3 order-1 mt-0 mb-0 d-none d-lg-flex d-print-none">
 	<?php
 		wp_nav_menu( array(
 			'menu'            => 'aside',

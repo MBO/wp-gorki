@@ -24,4 +24,14 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 p {
   text-align: justify;
 }
+@media print {
+  .border-print-0 {
+    border: 0;
+  }
+}
 
+@media (max-width: 575px) {
+  .display-3 {
+    font-size: 3rem;
+  }
+}
