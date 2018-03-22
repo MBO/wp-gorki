@@ -22,7 +22,7 @@
 
 	<div class="container mt-3 mb-3">
 	  <div class="row">
-		  <div class="col-12 col-md-8 col-lg-9 order-2">
+		  <div class="col-12 col-lg-9 order-2">
 				<div class="entry-content card border-top border-bottom">
 					<div class="card-body">
 				  <div class="card-title">

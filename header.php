@@ -27,20 +27,16 @@
 	<a class="skip-link sr-only sr-only-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'gorki' ); ?></a>
 
 	<header id="masthead" class="site-header navbar-static-top" role="banner">
-		<nav class="navbar x-fixed-top navbar-expand-md navbar-dark bg-dark p-3 box-shadow"> <!-- TODO fixed-top -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3 box-shadow"> <!-- TODO fixed-top -->
 			<div class="container">
 				<a class="site-title navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><strong><?php bloginfo( 'name' ); ?></strong></a>
-
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primary-menu" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
 
 				<?php
 				wp_nav_menu( array(
 					'menu'            => 'top',
 					'theme_location'  => 'menu-top',
 					'container'       => 'div',
-					'container_id'    => 'primary-menu',
+					'container_id'    => 'top-menu',
 					'container_class' => 'collapse navbar-collapse',
 					'menu_id'         => false,
 					'menu_class'      => 'navbar-nav ml-auto',

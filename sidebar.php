@@ -1,41 +1,66 @@
 <?php
 /**
  * The sidebar containing the main widget area
+ * Changes to navbar with menu for medium and smaller screens
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
  * @package Gorki
  */
+$menu = wp_nav_menu( array(
+	'echo'            => false,
+	'menu'            => 'aside',
+	'theme_location'  => 'menu-aside',
+	'container'       => 'div',
+	'container_id'    => 'aside-menu',
+	'menu_id'         => false,
+	'menu_class'      => 'nav nav-pills flex-column',
+	'depth'           => 1,
+	'fallback_cb'     => 'bs4navwalker::fallback',
+	'walker'          => new bs4navwalker()
+) );
 ?>
 
-<aside id="secondary" class="widget-area col-12 col-md-4 col-lg-3 order-1 mt-0 mb-0 d-flex">
-	<div class="card mt-0 mb-0">
-		<div class="card-body">
-			<h5 class="card-title">Menu</h5>
-			<div class="card-text">
-				<?php
-					wp_nav_menu( array(
-						'menu'            => 'aside',
-						'theme_location'  => 'menu-aside',
-						'container'       => 'div',
-						'container_id'    => 'aside-menu',
-						// 'container_class' => 'collapse navbar-collapse',
-						'menu_id'         => false,
-						// 'menu_class'      => 'navbar-nav nav-column nav-pills',
-						'menu_class'      => 'nav flex-column nav-pills',
-						'depth'           => 1,
-						'fallback_cb'     => 'bs4navwalker::fallback',
-						'walker'          => new bs4navwalker()
-					) );
-				?>
-			</div>
+<div class="d-flex d-lg-none col-12 order-1">
+  <div class="card">
+	  <div class="card-body">
+			<nav class="navbar navbar-dark">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#secondary-navbar" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="secondary-navbar">
+					<?php
+						wp_nav_menu( array(
+							'menu'            => 'aside',
+							'theme_location'  => 'menu-aside',
+							'container'       => 'div',
+							'container_id'    => 'aside-navbar-menu',
+							'menu_id'         => false,
+							'menu_class'      => 'nav nav-pills flex-column',
+							'depth'           => 1,
+							'fallback_cb'     => 'bs4navwalker::fallback',
+							'walker'          => new bs4navwalker()
+						) );
+					?>
+				</div>
+			</nav>
 		</div>
-		<?php if (is_active_sidebar(' sidebar-1 ')) { ?>
-		<div class="card-body">
-			<div class="card-text">
-				<?php dynamic_sidebar( 'sidebar-1' ); ?>
-			</div>
-		</div>
-		<?php } ?>
 	</div>
+</div>
+
+<aside id="secondary" class="widget-area col-lg-3 order-1 mt-0 mb-0 d-none d-lg-flex">
+	<?php
+		wp_nav_menu( array(
+			'menu'            => 'aside',
+			'theme_location'  => 'menu-aside',
+			'container'       => 'div',
+			'container_id'    => 'aside-menu',
+			'menu_id'         => false,
+			'menu_class'      => 'nav nav-pills flex-column',
+			'depth'           => 1,
+			'fallback_cb'     => 'bs4navwalker::fallback',
+			'walker'          => new bs4navwalker()
+		) );
+	?>
 </aside><!-- #secondary -->
