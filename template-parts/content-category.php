@@ -10,12 +10,18 @@
 ?>
 <!-- content-category.php -->
 <article id="post-<?php the_ID(); ?>" <?php
- post_class("entry-content card border-left-0 border-right-0 round-0 mb-3 ");
+ post_class("entry-content card border-left-0 border-right-0 round-0 mb-3 page-break");
 ?>>
 
   <div class="card-body">
   <div class="card-title">
-    <?php the_title( '<h1 class="entry-title display-3">', '</h1>' ); ?>
+    <?php 
+    if ( is_singular() ) :
+			the_title( '<h1 class="entry-title display-3">', '</h1>' );
+		else :
+			the_title( '<h2 class="entry-title display-3"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark" class="text-dark">', '</a></h2>' );
+    endif;
+    ?>
   </div>
   <div class="card-text">
   <?php
