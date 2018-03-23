@@ -26,11 +26,15 @@ p {
 }
 
 @media print {
+  body {
+    font-size: 1.2rem;
+  }
+
   .border-print-0 {
     border: 0;
   }
 
-  .page-break {
+  .page-break + page-break {
     page-break-before: always;
   }
 

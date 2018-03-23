@@ -15,7 +15,7 @@
   <?php
     if ( is_singular() ) :
   ?>
-    <div class="card-header p-0 rounded-0">
+    <div class="card-header p-0 rounded-0 d-print-none">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0 rounded-0">
           <li class="breadcrumb-item" aria-current="page"><?php the_category(', ') ?></li>
@@ -27,12 +27,25 @@
     endif;
   ?>
   <div class="card-body">
-    <div class="card-title">
+    <div class="card-title text-center">
       <?php 
       if ( is_singular() ) :
-        the_title( '<h1 class="entry-title display-3">', '</h1>' );
+      ?>
+        <h1 class="">
+          <!-- <a href="<?php echo esc_url( get_category_link( get_the_category()[0]->term_id ) ) ?>" class="text-dark font-weight-bold"> -->
+          <?php echo get_the_category()[0]->name ?>
+          <!-- </a> -->
+        </h1>
+        <h2 class="entry-title"><?php the_title() ?></h2>
+      <?php
       else :
-        the_title( '<h2 class="entry-title display-3"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark" class="text-dark">', '</a></h2>' );
+      ?>
+        <h2 class="entry-title">
+          <a href="<?php echo esc_url( get_permalink($post->ID) ) ?>" rel="bookmark" class="text-dark font-weight-bold">
+            <?php the_title() ?>
+          </a>
+        </h2>
+      <?php
       endif;
       ?>
     </div>
