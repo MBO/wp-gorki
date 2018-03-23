@@ -18,7 +18,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<?php wp_head(); ?>
 </head>
 
@@ -58,4 +57,3 @@
 		<img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
 	</header><!-- #masthead -->
 
-	<!-- <div id="content" class="site-content col-12 <?php is_active_sidebar( 'sidebar-1' ) ? 'col-md-8 order-3' : '' ?>"> -->
