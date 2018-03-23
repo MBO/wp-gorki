@@ -14,6 +14,9 @@
 
 get_header(); ?>
 <!-- page.php -->
+<div class="container mt-3 mb-3">
+  <div class="row">
+    <div class="col-12 col-lg-9 order-2">
 <?php
 while ( have_posts() ) : the_post();
 
@@ -21,5 +24,10 @@ while ( have_posts() ) : the_post();
 
 endwhile; // End of the loop.
 ?>
+		</div>
+
+		<?php get_sidebar(); ?>
+	</div>
+</div>
 <?php
 get_footer();
