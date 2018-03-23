@@ -23,12 +23,19 @@
 </head>
 
 <body <?php body_class(); ?>>
+<?php include "sidebar-mobile.php"; ?>
 <div id="page" class="site bg-light">
 	<a class="skip-link sr-only sr-only-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'gorki' ); ?></a>
 
 	<header id="masthead" class="site-header navbar-static-top d-print-none" role="banner">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3 box-shadow">
 			<div class="container">
+				<span class="d-block-inline d-lg-none">
+					<button class="btn btn-link pl-0" type="button" id="mobile-menu-toggler">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</span>
+				
 				<a class="site-title navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><strong><?php bloginfo( 'name' ); ?></strong></a>
 
 				<?php

@@ -29,8 +29,13 @@ p {
   .border-print-0 {
     border: 0;
   }
+
   .page-break {
     page-break-before: always;
+  }
+
+  .card-text:last-child {
+    margin-bottom: unset;
   }
 }
 
@@ -38,4 +43,46 @@ p {
   .display-3 {
     font-size: 3rem;
   }
+}
+
+/* mobile menu */
+
+#sidebar-mobile {
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  left: -260px;
+  height: 100%;
+  width: 260px;
+  z-index: 101;
+  overflow: auto;
+  overflow-y: scroll;
+  transition: left .4s ease;
+}
+
+#sidebar-mobile .nav-link {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#sidebar-mobile .nav-link.active {
+  color: #fff;
+}
+
+#sidebar-mobile-overlay {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.mobile-menu-opened #sidebar-mobile {
+  left: 0;
+}
+
+.mobile-menu-opened #sidebar-mobile-overlay {
+  display: block;
 }
