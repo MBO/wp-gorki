@@ -18,7 +18,7 @@ get_header(); ?>
 				<hr>
 				<p class="text-right">Skorzystaj z menu po lewej lub kliknij:</p>
 				<p class="lead text-right">
-					<a class="bt btn-primary btn-lg" href="<?php echo get_home_url() ?>">Strona główna</a>
+					<a class="bt btn-primary btn-lg" href="<?php echo esc_url( home_url( '/' ) ); ?>">Strona główna</a>
 				</p>
 			</div>
 		</div>
