@@ -9,9 +9,6 @@
 
 ?>
 <!-- content-single.php -->
-<div class="text-center d-print-none">
-  <h1><?php echo get_the_category()[0]->name ?></h1>
-</div>
 <article id="post-<?php the_ID(); ?>" <?php
  post_class("entry-content card border-left-0 border-right-0 rounded-0 mb-3 page-break");
 ?>>
