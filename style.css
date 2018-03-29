@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: mirek
 Author URI: http://underscores.me/
 Description: Description
-Version: 1.0.0
+Version: 1.0.1
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: gorki
@@ -26,10 +26,6 @@ p {
 }
 
 @media print {
-  body {
-    font-size: 1.2rem;
-  }
-
   .border-print-0 {
     border: 0;
   }
