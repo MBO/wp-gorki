@@ -21,11 +21,11 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-p {
-  text-align: justify;
-}
-
 @media print {
+  body {
+    font-size: 1.2rem;
+  }
+  
   .border-print-0 {
     border: 0;
   }
@@ -42,6 +42,12 @@ p {
 @media (max-width: 575px) {
   .display-3 {
     font-size: 3rem;
+  }
+}
+
+@media (min-width: 576px) {
+  p {
+    text-align: justify;
   }
 }
 
