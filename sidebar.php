@@ -18,7 +18,7 @@
 			'container_id'    => 'aside-menu',
 			'menu_id'         => false,
 			'menu_class'      => 'nav nav-pills flex-column',
-			'depth'           => 1,
+			'depth'           => 0,
 			'fallback_cb'     => 'bs4navwalker::fallback',
 			'walker'          => new bs4navwalker()
 		) );

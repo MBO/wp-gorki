@@ -24,13 +24,13 @@
 <body <?php body_class(); ?>>
 <?php include "sidebar-mobile.php"; ?>
 <div id="page" class="site bg-light">
-	<a class="skip-link sr-only sr-only-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'gorki' ); ?></a>
+	<a class="skip-link visually-hidden-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'gorki' ); ?></a>
 
 	<header id="masthead" class="site-header navbar-static-top d-print-none" role="banner">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3 box-shadow">
 			<div class="container">
-				<span class="d-block-inline d-lg-none">
-					<button class="btn btn-link pl-0" type="button" id="mobile-menu-toggler">
+				<span class="d-inline-block d-lg-none">
+					<button class="btn btn-link ps-0" type="button" id="mobile-menu-toggler" aria-label="<?php esc_attr_e( 'Open menu', 'gorki' ); ?>">
 						<span class="navbar-toggler-icon"></span>
 					</button>
 				</span>
@@ -45,8 +45,8 @@
 					'container_id'    => 'top-menu',
 					'container_class' => 'collapse navbar-collapse',
 					'menu_id'         => false,
-					'menu_class'      => 'navbar-nav ml-auto',
-					'depth'           => 1,
+					'menu_class'      => 'navbar-nav ms-auto',
+					'depth'           => 2,
 					'fallback_cb'     => 'bs4navwalker::fallback',
 					'walker'          => new bs4navwalker()
 				) );

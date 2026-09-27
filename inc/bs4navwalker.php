@@ -3,13 +3,15 @@
 /**
  * Class Name: bs4Navwalker
  * GitHub URI: https://github.com/dupkey/bs4navwalker
- * Description: A custom WordPress nav walker class for Bootstrap 4 (v4.0.0-alpha.1) nav menus in a custom theme using the WordPress built in menu manager
+ * Description: A custom WordPress nav walker class for Bootstrap 5 nav menus in a custom theme using the WordPress built in menu manager
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
 class bs4Navwalker extends Walker_Nav_Menu
 {
+    private $aside_submenus = array();
+
     /**
      * Starts the list before the elements are added.
      *
@@ -23,6 +25,14 @@ class bs4Navwalker extends Walker_Nav_Menu
      */
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat("\t", $depth);
+        if ( isset( $args->theme_location ) && 'menu-aside' === $args->theme_location ) {
+            $submenu = $this->aside_submenus[$depth];
+            $output .= "\n$indent<ul id=\"" . esc_attr( $submenu['id'] ) . '" class="nav flex-column collapse' . ( $submenu['expanded'] ? ' show' : '' ) . "\">\n";
+            if ( ! empty( $submenu['url'] ) && '#' !== $submenu['url'] ) {
+                $output .= $indent . '<li class="nav-item"><a class="nav-link' . ( $submenu['current'] ? ' active' : '' ) . '" href="' . esc_url( $submenu['url'] ) . '">' . esc_html( $submenu['title'] ) . "</a></li>\n";
+            }
+            return;
+        }
         $output .= "\n$indent<div class=\"dropdown-menu\">\n";
     }
 
@@ -39,7 +49,7 @@ class bs4Navwalker extends Walker_Nav_Menu
      */
     public function end_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat("\t", $depth);
-        $output .= "$indent</div>\n";
+        $output .= $indent . ( isset( $args->theme_location ) && 'menu-aside' === $args->theme_location ? '</ul>' : '</div>' ) . "\n";
     }
 
     /**
@@ -60,6 +70,18 @@ class bs4Navwalker extends Walker_Nav_Menu
 
         $classes = empty( $item->classes ) ? array() : (array) $item->classes;
         $classes[] = 'menu-item-' . $item->ID;
+        $is_aside = isset( $args->theme_location ) && 'menu-aside' === $args->theme_location;
+        $has_children = in_array( 'menu-item-has-children', $classes, true );
+
+        if ( $is_aside && $has_children ) {
+            $this->aside_submenus[$depth] = array(
+                'id'       => $args->container_id . '-submenu-' . $item->ID,
+                'expanded' => in_array( 'current-menu-ancestor', $classes, true ) || in_array( 'current-menu-parent', $classes, true ) || in_array( 'current-menu-item', $classes, true ),
+                'current'  => in_array( 'current-menu-item', $classes, true ),
+                'url'      => $item->url,
+                'title'    => $item->title,
+            );
+        }
 
         /**
          * Filter the CSS class(es) applied to a menu item's list item element.
@@ -77,7 +99,7 @@ class bs4Navwalker extends Walker_Nav_Menu
         // New
         $class_names .= ' nav-item';
         
-        if (in_array('menu-item-has-children', $classes)) {
+        if ( ! $is_aside && $has_children ) {
             $class_names .= ' dropdown';
         }
 
@@ -105,7 +127,7 @@ class bs4Navwalker extends Walker_Nav_Menu
         $id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
 
         // New
-        if ($depth === 0) {
+        if ($depth === 0 || $is_aside) {
             $output .= $indent . '<li' . $id . $class_names .'>';
         }
         //
@@ -119,16 +141,22 @@ class bs4Navwalker extends Walker_Nav_Menu
         $atts['href']   = ! empty( $item->url )        ? $item->url        : '';
 
         // New
-        if ($depth === 0) {
+        if ($depth === 0 || $is_aside) {
             $atts['class'] = 'nav-link';
         }
 
-        if ($depth === 0 && in_array('menu-item-has-children', $classes)) {
+        if ( $is_aside && $has_children ) {
+            $atts['class'] .= ' dropdown-toggle';
+            $atts['data-bs-toggle'] = 'collapse';
+            $atts['data-bs-target'] = '#' . $this->aside_submenus[$depth]['id'];
+            $atts['aria-controls'] = $this->aside_submenus[$depth]['id'];
+            $atts['aria-expanded'] = $this->aside_submenus[$depth]['expanded'] ? 'true' : 'false';
+        } elseif ($depth === 0 && $has_children) {
             $atts['class']       .= ' dropdown-toggle';
-            $atts['data-toggle']  = 'dropdown';
+            $atts['data-bs-toggle'] = 'dropdown';
         }
 
-        if ($depth > 0) {
+        if ($depth > 0 && ! $is_aside) {
             $manual_class = array_values($classes)[0] .' '. 'dropdown-item';
             $atts ['class']= $manual_class;
         }
@@ -168,17 +196,6 @@ class bs4Navwalker extends Walker_Nav_Menu
         }
 
         $item_output = $args->before;
-        // New
-        /*
-        if ($depth === 0 && in_array('menu-item-has-children', $classes)) {
-            $item_output .= '<a class="nav-link dropdown-toggle"' . $attributes .'data-toggle="dropdown">';
-        } elseif ($depth === 0) {
-            $item_output .= '<a class="nav-link"' . $attributes .'>';
-        } else {
-            $item_output .= '<a class="dropdown-item"' . $attributes .'>';
-        }
-        */
-        //
         $item_output .= '<a'. $attributes .'>';
         /** This filter is documented in wp-includes/post-template.php */
         $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
@@ -215,7 +232,7 @@ class bs4Navwalker extends Walker_Nav_Menu
      * @param array  $args   An array of arguments. @see wp_nav_menu()
      */
     public function end_el( &$output, $item, $depth = 0, $args = array() ) {
-        if (isset($args->has_children) && $depth === 0) {
+        if ($depth === 0 || ( isset( $args->theme_location ) && 'menu-aside' === $args->theme_location )) {
             $output .= "</li>\n";
         }
     }

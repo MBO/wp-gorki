@@ -13,6 +13,6 @@
   document.querySelector("#sidebar-mobile-overlay")
     .addEventListener("click", closeNav);
 
-  document.querySelector("#sidebar-mobile .close")
+  document.querySelector("#mobile-menu-close")
     .addEventListener("click", closeNav);
 })();

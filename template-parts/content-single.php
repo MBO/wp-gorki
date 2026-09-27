@@ -10,13 +10,13 @@
 ?>
 <!-- content-single.php -->
 <article id="post-<?php the_ID(); ?>" <?php
- post_class("entry-content card border-left-0 border-right-0 rounded-0 mb-3 page-break");
+ post_class("entry-content card border-start-0 border-end-0 rounded-0 mb-3 page-break");
 ?>>
   <div class="card-header p-0 rounded-0 d-print-none">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb m-0 rounded-0">
-        <li class="breadcrumb-item" aria-current="page"><?php the_category(', ') ?></li>
-        <li class="breadcrumb-item active"><?php the_title() ?></li>
+        <li class="breadcrumb-item"><?php the_category(', ') ?></li>
+        <li class="breadcrumb-item active" aria-current="page"><?php the_title() ?></li>
       </ol>
     </nav>
   </div>
@@ -34,4 +34,4 @@
   </div>
 </article><!-- #post-<?php the_ID(); ?> .entry-content -->
 
-<!-- /content-category.php -->
+<!-- /content-single.php -->

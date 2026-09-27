@@ -16,7 +16,7 @@
 	<?php
 		if ( get_the_content() ) {
 	?>
-	<div class="entry-content card border-left-0 border-right-0 rounded-0 border-print-0">
+	<div class="entry-content card border-start-0 border-end-0 rounded-0 border-print-0">
 		<div class="card-body">
 			<div class="card-text">
 				<?php
