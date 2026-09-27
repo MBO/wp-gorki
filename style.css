@@ -151,6 +151,67 @@ ul, ol {
   padding-inline-start: 1rem;
 }
 
+#top-menu .nav-item {
+  position: relative;
+}
+
+#top-menu .menu-item-has-children > .nav-link,
+#secondary .menu-item-has-children > .nav-link,
+#sidebar-mobile .menu-item-has-children > .nav-link {
+  position: relative;
+  padding-inline-end: 2.5rem;
+}
+
+#top-menu .menu-item-has-children > .nav-link::after,
+#secondary .menu-item-has-children > .nav-link::after,
+#sidebar-mobile .menu-item-has-children > .nav-link::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - .4rem);
+  right: 1rem;
+  width: .5rem;
+  height: .5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+#top-menu .nav-link[aria-expanded="true"]::after,
+#secondary .nav-link[aria-expanded="true"]::after,
+#sidebar-mobile .nav-link[aria-expanded="true"]::after {
+  transform: rotate(225deg);
+}
+
+#top-menu .sub-menu[hidden],
+#secondary .sub-menu[hidden],
+#sidebar-mobile .sub-menu[hidden] {
+  display: none !important;
+}
+
+#top-menu .sub-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 10rem;
+  margin: 0;
+  padding: .5rem 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: .375rem;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+#top-menu .sub-menu .nav-link {
+  color: #212529;
+}
+
+#top-menu .sub-menu .nav-link:hover,
+#top-menu .sub-menu .nav-link.active {
+  background: #f8f9fa;
+}
+
 @media(max-width: 575px) {
 	h1, .h1 {
 		font-size: 1.8rem;

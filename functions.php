@@ -141,6 +141,35 @@ function gorki_widgets_init() {
 }
 add_action( 'widgets_init', 'gorki_widgets_init' );
 
+function gorki_menu_item_classes( $classes, $item, $args ) {
+	if ( in_array( $args->theme_location, array( 'menu-top', 'menu-aside' ), true ) ) {
+		$classes[] = 'nav-item';
+	}
+	return $classes;
+}
+add_filter( 'nav_menu_css_class', 'gorki_menu_item_classes', 10, 3 );
+
+function gorki_menu_link_attributes( $atts, $item, $args ) {
+	if ( in_array( $args->theme_location, array( 'menu-top', 'menu-aside' ), true ) ) {
+		$classes = array( 'nav-link' );
+		if ( in_array( 'current-menu-item', (array) $item->classes, true ) ) {
+			$classes[] = 'active';
+		}
+		$atts['class'] = trim( ( $atts['class'] ?? '' ) . ' ' . implode( ' ', $classes ) );
+	}
+	return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'gorki_menu_link_attributes', 10, 3 );
+
+function gorki_aside_submenu_classes( $classes, $args ) {
+	if ( 'menu-aside' === $args->theme_location ) {
+		$classes[] = 'nav';
+		$classes[] = 'flex-column';
+	}
+	return $classes;
+}
+add_filter( 'nav_menu_submenu_css_class', 'gorki_aside_submenu_classes', 10, 2 );
+
 /**
  * Enqueue scripts and styles.
  */
@@ -201,7 +230,3 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
-/**
- * Require custom navwalker for Bootstrap navigation menus
- */
-require get_template_directory() . '/inc/bs4navwalker.php';

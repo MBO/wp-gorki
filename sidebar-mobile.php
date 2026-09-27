@@ -13,8 +13,7 @@
 			'menu_id'         => false,
 			'menu_class'      => 'nav flex-column',
 			'depth'           => 0,
-			'fallback_cb'     => 'bs4navwalker::fallback',
-			'walker'          => new bs4navwalker()
+			'fallback_cb'     => false,
 		) );
 	?>
 </div>

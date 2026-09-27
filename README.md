@@ -3,6 +3,11 @@
 _s
 ===
 
+Menu expansion
+--------------
+
+In Appearance > Menus, open Screen Options and enable CSS Classes under Show advanced menu properties. Add `menu-open` to a parent menu item's CSS Classes field to show its children on page load. The item can still be collapsed by clicking it. This applies to both the aside and top menus; ancestors of the current page also open automatically.
+
 Hi. I'm a starter theme called `_s`, or `underscores`, if you like. I'm a theme meant for hacking so don't use me as a Parent Theme. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
 
 My ultra-minimal CSS might make me look like theme tartare but that means less stuff to get in your way when you're designing your awesome theme. Here are some of the other more interesting things you'll find here:
