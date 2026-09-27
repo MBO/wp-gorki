@@ -98,3 +98,25 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 .mobile-menu-opened #sidebar-mobile-overlay {
   display: block;
 }
+
+
+.container {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+ul, ol {
+	padding-inline-start: 1.3rem;
+}
+
+@media(max-width: 575px) {
+	h1, .h1 {
+		font-size: 1.8rem;
+	}
+	h2, .h2 {
+		font-size: 1.6rem;
+	}
+	h3, .h3 {
+		font-size: 1.4rem;
+	}
+}
